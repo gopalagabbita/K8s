@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: rspod
+  labels:
+    app: dbserver
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: rspod
+  template:
+    metadata:
+      name: rspod
+      labels:
+        app: dbserver
+    ispec:
+      containers:
+      - name: javacontainer
+        image: dockerhandson/java-web-app
+        ports:
+        -  containerPort:  8080
+    

@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: platform
+  labels:
+    name: platform
+---
+
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: mavenapp
+  namespace: platform
+  labels:
+    app: mavenapp
+spec:
+  replicas: 2
+  template:
+    metadata:
+      name: mavenapp
+      labels:
+        app: mavenapp
+    spec:
+      containers:
+      - name: mavenapp
+        image: gopalagabbita/maven-web-application:1
+        ports:
+        - containerPort: 8080
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mavenservice
+  namespace: platform
+spec:
+ type: NodePort
+ selector:
+   app: mavenapp
+ ports:
+ - port: 80
+   targetPort: 8080

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: javawebapp
+  labels:
+    app: javawebapp
+spec:
+  replicas: 2
+  strategy: 
+    type: Recreate 
+  selector:
+    matchLabels:
+      app: javawebapp
+  template:
+    metadata:
+      name: javawebapp
+      labels:
+        app: javawebapp 
+    spec:
+      containers: 
+      - name: javawebappcontainer
+        image: dockerhandson/java-web-app
+        ports: 
+        - containerPort: 8080
