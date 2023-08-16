@@ -70,6 +70,14 @@ spec:
           value: devdb
         - name: MONGO_INITDB_ROOT_PASSWORD
           value: devdb@123
+        volumeMounts:
+        - name: mongodbhostpath
+          mountPath: /data/db
+      volumes: 
+      - name: mongodbhostpath
+        hostPath:
+          path: /tmp/mongodbdata
+         
 ---
 apiVersion: v1 
 kind: Service 
