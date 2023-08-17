@@ -22,9 +22,9 @@ spec:
             requests:
               cpu: 200m
               memory: "256Mi"
-          limits: 
-            cpu: 200m
-            memory: 512Mi
+            limits: 
+              cpu: 200m
+              memory: 512Mi
           env: 
           - name: MONGO_DB_HOSTNAME
             value: mongo
