@@ -75,9 +75,20 @@ spec:
           mountPath: /data/db
       volumes: 
       - name: mongodbhostpath
-        hostPath:
-          path: /tmp/mongodbdata
-         
+        persistentVolumeClaim:
+          claimName: mongodbpvc
+---
+apiVersion: v1 
+kind: PersistentVolumeClaim     
+metadata: 
+  name: mongodbpvc 
+spec: 
+  storageClassName: manual 
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
 ---
 apiVersion: v1 
 kind: Service 
