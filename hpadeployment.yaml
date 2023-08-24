@@ -25,7 +25,6 @@ spec:
             cpu: "100m"
             memory: "256Mi"
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
@@ -33,7 +32,7 @@ metadata:
 spec:
   type: NodePort
   selector:
-    app: hpadeployment
+    app: hpapod
   ports:
   - port: 80
     targetPort: 8080
@@ -48,12 +47,11 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: hpadeployment
+    name: hpadeploymentdemo
   minReplicas: 2
   maxReplicas: 5
   metrics:
   - resource:
       name: cpu
       targetAverageUtilization: 50
-
         type: Resource
